@@ -1,0 +1,18 @@
+  name: FunWorld
+  main: fr.azrodorza.FunWorld
+  version: 1.0.0
+  api-version: '1.20'
+
+  commands:
+    death:
+      description: Start a death swap
+      usage: /<command>
+    item:
+      description: Start a item pick
+      usage: /<command>
+    block:
+      description: Start a block shuffle
+      usage: /<command>
+    vampire:
+      description: Add vampire
+      usage: /<command>

@@ -1,0 +1,36 @@
+plugins {
+    id "java"
+    id "idea"
+}
+
+version = "0.1"
+group = "fr.azrodorza"
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    //maven { url "https://libraries.minecraft.net/" }
+}
+
+dependencies {
+    compileOnly("org.spigotmc:spigot:1.20.1-R0.1-SNAPSHOT")
+    compileOnly(fileTree("libs") { include("*.jar") })
+}
+
+java {
+    sourceCompatibility = JavaVersion.toVersion("17")
+    targetCompatibility = JavaVersion.toVersion("17")
+}
+
+projects {
+    tasks.withType(JavaCompile).tap {
+        configureEach {
+            options.encoding = 'UTF-8'
+        }
+    }
+}
+
+jar {
+    baseName "FunWorld"
+}
