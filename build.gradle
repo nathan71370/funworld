@@ -1,4 +1,5 @@
 plugins {
+    id "com.github.johnrengelman.shadow" version "8.1.1"
     id "java"
     id "idea"
 }
@@ -7,15 +8,16 @@ version = "0.1"
 group = "fr.azrodorza"
 
 repositories {
+    gradlePluginPortal()
     mavenCentral()
     mavenLocal()
     maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
-    //maven { url "https://libraries.minecraft.net/" }
 }
 
 dependencies {
     compileOnly("org.spigotmc:spigot:1.20.1-R0.1-SNAPSHOT")
     compileOnly(fileTree("libs") { include("*.jar") })
+    implementation("org.reflections:reflections:0.9.12")
 }
 
 java {
@@ -31,6 +33,14 @@ projects {
     }
 }
 
+
+shadowJar {
+   // include "org.reflections:reflections:0.9.12"
+    archiveBaseName.set("FunWorld")
+}
+
 jar {
-    baseName "FunWorld"
+    manifest {
+        attributes 'Class-Path': '/libs/LibsDisguises-10.0.37-Free.jar'
+    }
 }

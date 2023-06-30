@@ -1,27 +1,30 @@
 package fr.azrodorza.commands.blockshuffle;
 
+import fr.azrodorza.commands.CommandHelper;
+import fr.azrodorza.commands.CommandMapper;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import static fr.azrodorza.game.BlockShuffle.start;
 import static fr.azrodorza.game.BlockShuffle.stop;
 
-public class BlockShuffleCommand implements CommandExecutor {
+public class BlockShuffleCommand implements CommandHelper {
 
+    @CommandMapper(cmd = "block", sub = "help")
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player))
-            return true;
+    public void helpCommand(CommandSender sender, Command command, String label, String[] args) {
+        sender.sendMessage("Block shuffle command :\n" +
+                "- block start : start a block shuffle" +
+                "- block stop : stop the block shuffle");
+    }
 
-        if (args.length != 0 && args[0].equals("start")) {
-            start();
-        }
+    @CommandMapper(cmd = "block", sub = "start")
+    public void blockShuffleStart(CommandSender sender, Command command, String label, String[] args) {
+        start();
+    }
 
-        if (args.length != 0 && args[0].equals("stop")) {
-            stop();
-        }
-        return true;
+    @CommandMapper(cmd = "block", sub = "stop")
+    public void blockShuffleStop(CommandSender sender, Command command, String label, String[] args) {
+        stop();
     }
 }
